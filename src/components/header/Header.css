@@ -1,0 +1,73 @@
+.Header {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #CFD8DC;
+    color: #121212;
+}
+
+.title-wrapper {
+    margin-right: 8rem;
+}
+
+.title {
+    margin: 0 0;
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+.right-part {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+}
+
+.right-part .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+.right-part .menu-item {
+    display: inline-block;
+    margin: 0 1.2rem 0 0;
+    font-size: 1.2rem;
+}
+
+.menu-item a:hover {
+    color: #009688;
+    transition-duration: 0.5s;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: black;
+    transition-duration: 0.5s;
+}
+
+button {
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+
+.user-part-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-content: baseline;
+    justify-items: flex-end;
+    margin-left: 1rem;
+}
+
+.username {
+    display: inline-block;
+    vertical-align: center;
+    margin-top: 10px;
+}

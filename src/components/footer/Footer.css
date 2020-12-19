@@ -1,0 +1,18 @@
+.Footer {
+    height: 25px;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #455A64;
+    color: white;
+}
+
+.Footer span {
+    text-align: left;
+    vertical-align: center;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
