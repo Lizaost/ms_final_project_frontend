@@ -31,16 +31,20 @@ export const Header = () => {
             <div className="right-part">
                 <ul className="menu">
                     <li className="menu-item"><Link to="/">Start</Link></li>
-                    {/*{isLoggedIn ?*/}
-                    {/*    <li className={"menu-item"}><Link to={`/user/${currentUserId}`}>My page</Link></li>*/}
-                    {/*    : null*/}
-                    {/*}*/}
                     <li className="menu-item"><Link to="/info">Project</Link></li>
+                    {isLoggedIn ?
+                        <li className={"menu-item"}><Link to={`/create`}>New post</Link></li>
+                        : null
+                    }
                 </ul>
                 <div className="user-part">
                     {isLoggedIn ?
                         <div className={'user-part-wrapper'}>
-                            <span className={'username'}>LOST</span>
+                            <span className={'username'}>
+                                <Link to={`/user/${currentUserId}`}>
+                                    LOST
+                                </Link>
+                            </span>
                             <div>
                                 <button onClick={logout}>LOG OUT</button>
                             </div>
