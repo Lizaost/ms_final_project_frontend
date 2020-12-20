@@ -10,9 +10,25 @@
     color: white;
 }
 
-.Footer span {
+.Footer p {
+    margin: 0;
     text-align: left;
     vertical-align: center;
     font-weight: normal;
     font-size: 0.9rem;
+    word-wrap: normal;
+}
+
+@media screen and (max-width: 768px){
+    .Footer {
+        height: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .Footer p{
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+    }
 }

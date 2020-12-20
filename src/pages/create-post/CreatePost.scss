@@ -1,0 +1,26 @@
+.CreatePost {
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: lighter;
+  }
+
+  .form-wrapper {
+    width: 70%;
+    margin: 1rem auto;
+    text-align: right;
+
+    textarea {
+      padding: 0.5rem 0.8rem;
+      font-size: 1.2rem;
+      font-family: sans-serif;
+      width: 95%;
+      height: 240px;
+    }
+  }
+
+  .post-button {
+    padding: 0.5rem 0.8rem;
+    margin-top: 0.5rem;
+  }
+}

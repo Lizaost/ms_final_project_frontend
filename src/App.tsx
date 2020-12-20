@@ -9,6 +9,9 @@ import {Home} from "./pages/home/Home";
 import {ProjectInfo} from "./pages/project-info/ProjectInfo";
 import {PostDetails} from "./pages/post-details/PostDetails";
 import {UserPage} from "./pages/user-page/UserPage";
+import {Login} from "./pages/login/Login";
+import {Register} from "./pages/register/Register";
+import {CreatePost} from "./pages/create-post/CreatePost";
 
 function App() {
     return (
@@ -20,6 +23,9 @@ function App() {
                         <Route path="/posts/:id" component={PostDetails}/>
                         <Route path="/user/:id" component={UserPage}/>
                         <Route exact path="/info" component={ProjectInfo}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>
+                        <Route exact path="/create" component={CreatePost}/>
                         <Route exact path="/" component={Home}/>
                     </Switch>
                 </div>

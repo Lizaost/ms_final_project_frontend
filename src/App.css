@@ -13,3 +13,32 @@ button:hover {
   color: white;
   transition-duration: 0.5s;
 }
+
+.content {
+  max-width: 1140px;
+  margin: 20px auto 50px;
+}
+
+@media screen and (max-width: 1200px){
+  .content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .content {
+    width: 96%;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  height: 25px;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 1px solid grey;
+  font-size: 1.2rem;
+}

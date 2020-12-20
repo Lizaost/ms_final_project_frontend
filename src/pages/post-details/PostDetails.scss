@@ -1,0 +1,61 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.PostDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+
+  .post-meta {
+    font-size: 0.8rem;
+    color: #455A64;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+
+    .post-author {
+      font-weight: bolder;
+
+      a {
+        color: #455A64;
+
+        .username {
+          font-weight: normal;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  .post-title {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    margin: 1rem;
+    border-bottom: 2px #009688 solid;
+    padding: 0.2rem 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .post-text {
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .post-title {
+      text-align: left;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin: 1rem 0;
+    }
+
+    .post-text {
+      width: 94%;
+    }
+  }
+}

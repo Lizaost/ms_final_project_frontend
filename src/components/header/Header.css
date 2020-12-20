@@ -10,7 +10,7 @@
 }
 
 .title-wrapper {
-    margin-right: 8rem;
+    margin-right: 1.5rem;
 }
 
 .title {
@@ -70,4 +70,17 @@ button {
     display: inline-block;
     vertical-align: center;
     margin-top: 10px;
+}
+
+
+@media screen and (max-width: 768px){
+    .Header {
+        flex-direction: column;
+        height: 100px;
+    }
+
+    .title {
+        width: 100%;
+        text-align: center;
+    }
 }

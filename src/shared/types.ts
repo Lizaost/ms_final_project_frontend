@@ -4,6 +4,7 @@ export interface Post {
     text: string;
     published_at: string;
     author_id: number;
+    author: User;
 }
 
 export interface User {

@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.PostCard{
+    border: 2px #009688 solid;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 1rem;
+    width: 46%;
+}
+
+@media screen and (max-width: 768px){
+    .PostCard {
+        width: 94%;
+    }
+}
+
+.PostCard .post-meta{
+    font-size: 0.8rem;
+    color: #455A64;
+}
+
+.PostCard .post-meta .post-author a {
+    color: #455A64;
+}
+
+.PostCard .post-title {
+    font-size: 1.6rem;
+    font-weight: lighter;
+    margin: 0.5rem 0 0;
+}
+
+.PostCard .post-text {
+    font-size: 1rem;
+}

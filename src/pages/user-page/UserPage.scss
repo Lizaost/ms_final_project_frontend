@@ -1,0 +1,33 @@
+.UserPage {
+  .user-name {
+    font-size: 2rem;
+    font-weight: lighter;
+    margin: 0.5rem;
+    padding: 0;
+  }
+
+  .user-username {
+    font-size: 1.2rem;
+    color: #455A64;
+    font-weight: normal;
+    margin: 0.5rem;
+    padding: 0;
+  }
+
+  .user-status {
+    border-left: 3px #009688 solid;
+    padding-left: 0.7rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .user-name, .user-username {
+      text-align: center;
+    }
+
+    .user-status {
+      margin-left: 0.5rem;
+    }
+  }
+}

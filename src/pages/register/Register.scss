@@ -1,0 +1,20 @@
+.Register {
+  h1 {
+    text-align: center;
+    font-weight: lighter;
+  }
+
+  .register-form-wrapper {
+    margin: 2rem auto 0;
+    text-align: center;
+
+    form {
+      width: 400px;
+      margin: 1rem auto;
+    }
+  }
+
+  .register-button {
+    padding: 0.5rem 0.8rem;
+  }
+}
