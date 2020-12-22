@@ -7,18 +7,15 @@ export const Header = () => {
     const currentUserId = 1;
 
     const logout = () => {
-        console.log('Logging out');
-        setLoggedIn(false);
+        window.location.href = '/logout'
     };
 
     const login = () => {
-        console.log('Logging in');
-        setLoggedIn(true);
+        window.location.href = '/login'
     };
 
     const register = () => {
-        console.log('Registering');
-        setLoggedIn(true);
+        window.location.href = '/register'
     };
 
     return (

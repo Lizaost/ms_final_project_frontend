@@ -25,7 +25,18 @@ export const getPostsForUser = (id: number) => {
 
 export const login = (email: string, password: string) => {
     console.log('Logging in');
-    return true;
+    let data = {
+        email: email,
+        password: password
+    };
+    return axios.post(environment.baseApiRoot + '/auth/login', data, {
+        withCredentials: true
+    })
+        .then((res) => {
+            // console.log(res.data);
+            console.log(res.data);
+            return res.data;
+        });
 };
 
 export const register = (username: string,
@@ -35,7 +46,33 @@ export const register = (username: string,
                          password: string,
                          status: string) => {
     console.log('Registering');
-    return true;
+    let data = {
+        username: username,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        password: password,
+        status: status
+    };
+    return axios.post(environment.baseApiRoot + '/auth/register', data, {
+        withCredentials: true
+    })
+        .then((res) => {
+            // console.log(res.data);
+            console.log(res.data);
+            return res.data;
+        });
+};
+
+export const logout = () => {
+    return axios.post(environment.baseApiRoot + '/auth/logout', {}, {
+        withCredentials: true
+    })
+        .then((res) => {
+            // console.log(res.data);
+            console.log(res.data);
+            return res.data;
+        });
 };
 
 export const createPost = (title: string, text: string) => {

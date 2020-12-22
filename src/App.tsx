@@ -14,6 +14,7 @@ import {Register} from "./pages/register/Register";
 import {CreatePost} from "./pages/create-post/CreatePost";
 import {SetTestCookies} from "./components/testing/SetTestCookies";
 import {GetTestCookies} from "./components/testing/GetTestCookies";
+import {Logout} from "./pages/logout/Logout";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/user/:id" component={UserPage}/>
                         <Route exact path="/info" component={ProjectInfo}/>
                         <Route exact path="/login" component={Login}/>
+                        <Route exact path="/logout" component={Logout}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/create" component={CreatePost}/>
                         <Route exact path="/cookies-set" component={SetTestCookies}/>
