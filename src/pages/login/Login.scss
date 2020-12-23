@@ -4,6 +4,24 @@
     font-weight: lighter;
   }
 
+  .login-error-wrapper {
+    width: 36%;
+    margin: 1rem auto 0;
+    height: 40px;
+    background-color: #FFECB3;
+    color: #000;
+
+    span {
+      display: block;
+      font-size: 1rem;
+      text-align: center;
+      vertical-align: middle;
+      padding-top: 0.5rem;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .login-form-wrapper {
     margin: 2rem auto 0;
     text-align: center;

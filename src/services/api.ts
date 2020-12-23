@@ -32,10 +32,13 @@ export const login = (email: string, password: string) => {
     return axios.post(environment.baseApiRoot + '/auth/login', data, {
         withCredentials: true
     })
-        .then((res) => {
-            // console.log(res.data);
-            console.log(res.data);
-            return res.data;
+        .then(res => res.data)
+        .catch(e => {
+            console.log('------');
+            console.log(e);
+            return new Promise(resolve => {
+                resolve({status: 'fail', message: e.message})
+            })
         });
 };
 

@@ -15,6 +15,7 @@ export interface UserInfo {
 export const Register = () => {
 
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+    const [registerError, setRegisterError] = useState<String | null>(null);
 
     const onChangeHandler = (field: string, value: any) => {
         console.log(field, value);
@@ -28,15 +29,33 @@ export const Register = () => {
 
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
+        setRegisterError(null);
         if (userInfo?.username && userInfo?.first_name && userInfo?.last_name &&
             userInfo?.email && userInfo?.password && userInfo?.status) {
-            let result = register(userInfo.username, userInfo.first_name, userInfo.last_name, userInfo.email,
-                userInfo.password, userInfo.status);
+            try {
+                register(userInfo.username, userInfo.first_name, userInfo.last_name, userInfo.email,
+                    userInfo.password, userInfo.status)
+                    .then((res) => {
+                        console.log(res.status);
+                        if (res.status === 'success') {
+                            window.location.href = '/user/' + res.user_id;
+                        } else {
+                            setRegisterError('Something went wrong. Try again.')
+                        }
+                    });
+            } catch (e) {
+                setRegisterError('Something went wrong. Try again.')
+            }
         }
     };
 
     return <div className={'Register'}>
         <h1>Register</h1>
+        { registerError ?
+            <div className={'register-error-wrapper'}>
+                <span>{registerError}</span>
+            </div>
+            : null }
         <div className={'register-form-wrapper'}>
             <form onSubmit={submitHandler}>
                 <Input name="username"
