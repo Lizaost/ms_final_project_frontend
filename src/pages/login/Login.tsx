@@ -29,7 +29,7 @@ export const Login = () => {
         if (userInfo?.email && userInfo?.password) {
             try {
                 login(userInfo.email, userInfo.password).then((res) => {
-                    console.log(res.status);
+                    console.log(res);
                     if (res.status === 'success') {
                         window.location.href = '/user/' + res.user_id;
                     } else {

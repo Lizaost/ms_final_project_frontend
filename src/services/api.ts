@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Post, User} from "../shared/types";
+import {Post, User, Comment} from "../shared/types";
 import {environment} from "../environments/environment";
 
 export const getPosts = () => {
@@ -7,11 +7,17 @@ export const getPosts = () => {
         .then((res) => res.data);
 };
 
-
 export const getPost = (id: number) => {
     return axios.get<Post>(environment.baseApiRoot + '/posts/' + id, {withCredentials: true})
         .then((res) => res.data);
 };
+
+export const getPostComments = (id: number) => {
+    return axios.get<Comment[]>(environment.baseApiRoot + '/posts/' + id + '/comments',
+        {withCredentials: true})
+        .then((res) => res.data);
+};
+
 
 export const getUser = (id: number) => {
     return axios.get<User>(environment.baseApiRoot + '/users/' + id, {withCredentials: true})
@@ -72,14 +78,72 @@ export const logout = () => {
         withCredentials: true
     })
         .then((res) => {
-            // console.log(res.data);
-            console.log(res.data);
             return res.data;
         });
 };
 
+export const checkLoginStatus = () => {
+    console.log('Checking login status in');
+    console.log(document.cookie);
+    return axios.post(environment.baseApiRoot + '/auth/check', {}, {
+        withCredentials: true
+    })
+        .then(res => {
+            return res.data.isUserLoggedIn;
+        })
+        .catch(e => {
+            return false;
+        });
+};
+
+export const getProfile = () => {
+    console.log('Checking login status in');
+    return axios.post(environment.baseApiRoot + '/auth/profile', {}, {
+        withCredentials: true
+    })
+        .then(res => res.data)
+        .catch(e => {
+            return new Promise(resolve => {
+                resolve({status: 'fail', message: e.message})
+            })
+        });
+};
+
+
 export const createPost = (title: string, text: string) => {
-    console.log('Publishing post with title ' + title);
+    console.log('Publishing post');
+    const data = {
+        title: title,
+        text: text
+    };
+    return axios.post(environment.baseApiRoot + '/posts', data, {
+        withCredentials: true
+    })
+        .then(res => res.data)
+        .catch(e => {
+            return new Promise(resolve => {
+                resolve({status: 'fail', message: e.message})
+            })
+        });
+};
+
+
+export const createComment = (post_id: number, text: string) => {
+    console.log('Publishing comment');
+    const data = {
+        post_id: post_id,
+        text: text
+    };
+    console.log(data);
+    return axios.post(environment.baseApiRoot + '/comments', data, {
+        withCredentials: true
+    })
+        .then(res => res.data)
+        .catch(e => {
+            return new Promise(resolve => {
+                resolve({status: 'fail', message: e.message})
+            })
+        });
 };
 
 
@@ -88,8 +152,6 @@ export const setTestCookies = () => {
         withCredentials: true
     })
         .then((res) => {
-            // console.log(res.data);
-            console.log(res.data);
             document.cookie = document.cookie + '; token=' + res.data['token'];
             return res.data;
         });

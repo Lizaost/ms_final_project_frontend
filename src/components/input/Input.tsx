@@ -12,7 +12,8 @@ type Props = {
     areSpacesAllowed?: boolean;
 }
 
-export const Input: React.FunctionComponent<Props> = ({name, type, required, label, areSpacesAllowed, className, placeholder, onChange}) => {
+export const Input: React.FunctionComponent<Props> = ({name, type, required, label, areSpacesAllowed, className,
+                                                          placeholder, onChange}) => {
 
     const [inputValue, setInputValue] = useState<string>('');
     const [inputChanged, setInputChanged] = useState<boolean>(false);
@@ -53,11 +54,9 @@ export const Input: React.FunctionComponent<Props> = ({name, type, required, lab
         }
 
         checkField();
-        console.log(inputError);
     }, [inputValue]);
 
     const changeHandler = (value: string) => {
-        console.log(value);
         setInputValue(value);
         if (onChange) {
             onChange(value);

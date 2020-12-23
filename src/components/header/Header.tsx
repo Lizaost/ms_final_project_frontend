@@ -1,10 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Header.css';
+import {checkLoginStatus, getProfile} from "../../services/api";
+
+export interface UserData {
+    email: string,
+    first_name: string,
+    last_name: string,
+    status: string,
+    user_id: string,
+    username: string,
+}
 
 export const Header = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const currentUserId = 1;
+    const [userData, setUserData] = useState<UserData | null>(null);
+
+    useEffect(() => {
+        if (checkLoginStatus()) {
+            setLoggedIn(true);
+            getProfile().then((data) => {
+                setUserData(data.data);
+            })
+        }
+    }, []);
 
     const logout = () => {
         window.location.href = '/logout'
@@ -35,11 +54,11 @@ export const Header = () => {
                     }
                 </ul>
                 <div className="user-part">
-                    {isLoggedIn ?
+                    {isLoggedIn && userData?
                         <div className={'user-part-wrapper'}>
                             <span className={'username'}>
-                                <Link to={`/user/${currentUserId}`}>
-                                    LOST
+                                <Link to={`/user/${userData.user_id}`}>
+                                    @{userData.username}
                                 </Link>
                             </span>
                             <div>

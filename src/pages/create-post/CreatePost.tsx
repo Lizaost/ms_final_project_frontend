@@ -10,14 +10,24 @@ export const CreatePost = () => {
 
     const publishPost = () => {
         if (postText.length > 0 && postTitle.length > 0) {
-            createPost(postTitle, postText);
+            createPost(postTitle, postText).then((res) => {
+                console.log(res);
+                if (res.status === 'success') {
+                    window.location.href = '/user/' + res.user_id;
+                }
+            });
         }
     };
 
     return <div className={'CreatePost'}>
         <h1>Create a new post</h1>
         <div className={'form-wrapper'}>
-            <Input name={'post-title'} type={'text'} placeholder={'Enter post title'} onChange={setPostTitle}/>
+            <Input name={'post-title'}
+                   type={'text'}
+                   placeholder={'Enter post title'}
+                   className={'labeled'}
+                   areSpacesAllowed={true}
+                   onChange={setPostTitle}/>
             <textarea className={'post-text'}
                       onChange={(event) => {
                           setPostText(event.target.value)

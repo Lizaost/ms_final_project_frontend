@@ -15,7 +15,9 @@ export const Home = () => {
 
     return (
         <div>
-            <PostsList posts={posts}/>
+            {posts ?
+                <PostsList posts={posts}/>
+                : null}
         </div>
     )
 };

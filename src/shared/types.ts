@@ -4,7 +4,7 @@ export interface Post {
     text: string;
     published_at: string;
     author_id: number;
-    author: User;
+    author: Partial<User>;
 }
 
 export interface User {
@@ -24,4 +24,5 @@ export interface Comment {
     post_id: number;
     text : string;
     published_at: string;
+    author: Partial<User>;
 }

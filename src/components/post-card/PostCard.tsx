@@ -10,7 +10,7 @@ type Props = {
 
 export const PostCard: React.FunctionComponent<Props> = ({post}) => {
 
-    const annotation = post.text.substr(0, 1000);
+    const annotation = post.text ? post.text.substr(0, 1000) : '';
 
     return <div className={'PostCard'}>
         <Link to={`/posts/${post.id}`}>
@@ -24,7 +24,7 @@ export const PostCard: React.FunctionComponent<Props> = ({post}) => {
                 <span className={'post-date'}>{getFormattedDayAndMonth(post.published_at)}</span>
             </div>
             <h2 className={'post-title'}>{post.title}</h2>
-            <p className={'post-text'}>{post.text.length < 1000 ? post.text : annotation + '...'}</p>
+            <p className={'post-text'}>{post.text?.length < 1000 ? post.text : annotation + '...'}</p>
         </Link>
     </div>
 };
