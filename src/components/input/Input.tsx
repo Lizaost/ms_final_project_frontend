@@ -69,7 +69,7 @@ export const Input: React.FunctionComponent<Props> = ({name, type, required, lab
             {label ? <label className={'form-control-label'}>{label}</label> : null}
             <input type={type}
                    name={name}
-                   className={"form-control " + (className ? className : "")}
+                   className={"form-control " + (className ? className : "") + (label ? "labeled" : "")}
                    placeholder={placeholder}
                    onChange={(event) => changeHandler(event.target.value)}/>
         </div>
