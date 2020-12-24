@@ -2,6 +2,7 @@ import axios from 'axios';
 import {Post, User, Comment} from "../shared/types";
 import {environment} from "../environments/environment";
 
+
 export const getPosts = () => {
     return axios.get<Post[]>(environment.baseApiRoot + '/posts', {withCredentials: true})
         .then((res) => res.data);
@@ -30,7 +31,6 @@ export const getPostsForUser = (id: number) => {
 };
 
 export const login = (email: string, password: string) => {
-    console.log('Logging in');
     let data = {
         email: email,
         password: password
@@ -38,10 +38,14 @@ export const login = (email: string, password: string) => {
     return axios.post(environment.baseApiRoot + '/auth/login', data, {
         withCredentials: true
     })
-        .then(res => res.data)
+        .then(res => {
+            console.log(res.data);
+            let accessToken = res.data.auth_token;
+            // save access token in local storage
+            window.localStorage.setItem('accessToken', accessToken);
+            return res.data;
+        })
         .catch(e => {
-            console.log('------');
-            console.log(e);
             return new Promise(resolve => {
                 resolve({status: 'fail', message: e.message})
             })
@@ -67,25 +71,55 @@ export const register = (username: string,
         withCredentials: true
     })
         .then((res) => {
-            // console.log(res.data);
-            console.log(res.data);
+            let accessToken = res.data.auth_token;
+            // save access token in local storage
+            window.localStorage.setItem('accessToken', accessToken);
+            window.localStorage.setItem('expireAt', String((new Date().getTime()/1000) + 60*30));
             return res.data;
         });
 };
 
 export const logout = () => {
-    return axios.post(environment.baseApiRoot + '/auth/logout', {}, {
+    const data = {
+        accessToken: window.localStorage.getItem('accessToken')
+    };
+    return axios.post(environment.baseApiRoot + '/auth/logout', data, {
         withCredentials: true
     })
         .then((res) => {
+            // remove saved access token from local storage
+            window.localStorage.removeItem('accessToken');
+            window.localStorage.removeItem('expireAt');
             return res.data;
         });
 };
 
-export const checkLoginStatus = () => {
-    console.log('Checking login status in');
-    console.log(document.cookie);
-    return axios.post(environment.baseApiRoot + '/auth/check', {}, {
+export const checkLoginStatus = async () => {
+    const data = {
+        accessToken: window.localStorage.getItem('accessToken')
+    };
+    const expireAt = window.localStorage.getItem('expireAt');
+    if (expireAt) {
+        const now = new Date().getTime() / 1000;
+        // if access token is about to expire
+        if (+expireAt - now < 5) {
+            // refresh access token
+            await refreshAccessToken().then((res) => {
+                if (res.status === 'success') {
+                    // save new access token and its expiration time to local storage
+                    window.localStorage.setItem('accessToken', res.accessToken);
+                    window.localStorage.setItem('expireAt', String((new Date().getTime()/1000) + 60*30));
+                    data.accessToken = res.accessToken;
+                } else {
+                    // if token cannot be refreshed, logout and redirect user to index page
+                    logout().then(() => {
+                        window.location.href = '/';
+                    })
+                }
+            })
+        }
+    }
+    return axios.post(environment.baseApiRoot + '/auth/check', data, {
         withCredentials: true
     })
         .then(res => {
@@ -97,8 +131,10 @@ export const checkLoginStatus = () => {
 };
 
 export const getProfile = () => {
-    console.log('Checking login status in');
-    return axios.post(environment.baseApiRoot + '/auth/profile', {}, {
+    const data = {
+        accessToken: window.localStorage.getItem('accessToken')
+    };
+    return axios.post(environment.baseApiRoot + '/auth/profile', data, {
         withCredentials: true
     })
         .then(res => res.data)
@@ -109,12 +145,24 @@ export const getProfile = () => {
         });
 };
 
+export const refreshAccessToken = () => {
+    // let refreshToken = window.localStorage.getItem('refreshToken');
+    return axios.post(environment.baseApiRoot + '/auth/refresh', {}, {
+        withCredentials: true
+    })
+        .then(res => res.data)
+        .catch(e => {
+            return new Promise(resolve => {
+                resolve({status: 'fail', message: e.message})
+            })
+        });
+};
 
 export const createPost = (title: string, text: string) => {
-    console.log('Publishing post');
     const data = {
         title: title,
-        text: text
+        text: text,
+        accessToken: window.localStorage.getItem('accessToken')
     };
     return axios.post(environment.baseApiRoot + '/posts', data, {
         withCredentials: true
@@ -129,10 +177,10 @@ export const createPost = (title: string, text: string) => {
 
 
 export const createComment = (post_id: number, text: string) => {
-    console.log('Publishing comment');
     const data = {
         post_id: post_id,
-        text: text
+        text: text,
+        accessToken: window.localStorage.getItem('accessToken')
     };
     console.log(data);
     return axios.post(environment.baseApiRoot + '/comments', data, {
@@ -144,20 +192,4 @@ export const createComment = (post_id: number, text: string) => {
                 resolve({status: 'fail', message: e.message})
             })
         });
-};
-
-
-export const setTestCookies = () => {
-    return axios.post(environment.baseApiRoot.replace('/api', '') + '/set-test-cookies', {}, {
-        withCredentials: true
-    })
-        .then((res) => {
-            document.cookie = document.cookie + '; token=' + res.data['token'];
-            return res.data;
-        });
-};
-
-export const getTestCookies = () => {
-    return axios.get(environment.baseApiRoot.replace('/api', '') + '/get-cookies', {withCredentials: true})
-        .then((res) => res.data);
 };

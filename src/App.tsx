@@ -12,8 +12,6 @@ import {UserPage} from "./pages/user-page/UserPage";
 import {Login} from "./pages/login/Login";
 import {Register} from "./pages/register/Register";
 import {CreatePost} from "./pages/create-post/CreatePost";
-import {SetTestCookies} from "./components/testing/SetTestCookies";
-import {GetTestCookies} from "./components/testing/GetTestCookies";
 import {Logout} from "./pages/logout/Logout";
 
 function App() {
@@ -30,8 +28,6 @@ function App() {
                         <Route exact path="/logout" component={Logout}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/create" component={CreatePost}/>
-                        <Route exact path="/cookies-set" component={SetTestCookies}/>
-                        <Route exact path="/cookies-get" component={GetTestCookies}/>
                         <Route exact path="/" component={Home}/>
                     </Switch>
                 </div>

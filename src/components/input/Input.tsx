@@ -85,7 +85,7 @@ export const Input: React.FunctionComponent<Props> = ({
                 hasSpecials = false;
             }
 
-            if (hasUppercase && hasLowercase && hasNumbers && hasSpecials){
+            if (hasUppercase && hasLowercase && hasNumbers && hasSpecials && longEnough){
                 isInvalid = false;
             }
 

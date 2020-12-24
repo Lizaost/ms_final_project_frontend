@@ -1,0 +1,35 @@
+.Home {
+
+  .header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #009688;
+    border-bottom: 2px solid #009688;
+
+    .title {
+      font-weight: lighter;
+      font-size: 2rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .welcome-text {
+      font-weight: normal;
+      font-size: 1rem;
+      text-align: center;
+      width: 60%;
+      margin: 1rem auto;
+    }
+
+    .learn-more-link {
+      color: #009688;
+      border-bottom: white 1px solid;
+      transition-duration: 0ms.3s;
+      &:hover {
+        border-bottom: 1px #009688 solid;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}
