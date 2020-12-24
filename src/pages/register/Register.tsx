@@ -63,35 +63,36 @@ export const Register = () => {
                        label={'Username'}
                        placeholder="Enter your username"
                        onChange={(value) => onChangeHandler('username', value)}
-                       required/>
+                       required={true}/>
 
                 <Input name="first_name"
                        type={'text'}
                        label={'First name'}
                        placeholder="Enter your first name"
                        onChange={(value) => onChangeHandler('first_name', value)}
-                       required/>
+                       required={true}/>
 
                 <Input name="last_name"
                        type={'text'}
                        label={'Last name'}
                        placeholder="Enter your last name"
                        onChange={(value) => onChangeHandler('last_name', value)}
-                       required/>
+                       required={true}/>
 
                 <Input name="email"
                        type={'text'}
                        label={'E-mail'}
                        placeholder="Enter your email"
                        onChange={(value) => onChangeHandler('email', value)}
-                       required/>
+                       required={true}/>
 
                 <Input name="password"
                        type={'password'}
                        label={'Password'}
                        placeholder="Enter your password"
                        onChange={(value) => onChangeHandler('password', value)}
-                       required/>
+                       checkPassword={true}
+                       required={true}/>
 
                 <Input name="status"
                        type={'text'}
@@ -99,9 +100,9 @@ export const Register = () => {
                        placeholder="Enter your status"
                        areSpacesAllowed={true}
                        onChange={(value) => onChangeHandler('status', value)}
-                       required/>
+                       required={true}/>
 
-                <div className="">
+                <div className="register-button-wrapper">
                     <button type="submit" className="register-button">REGISTER</button>
                 </div>
             </form>

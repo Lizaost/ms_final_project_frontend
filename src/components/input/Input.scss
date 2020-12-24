@@ -19,5 +19,13 @@
     margin-top: -0.5rem;
     margin-bottom: 0.5rem;
     color: crimson;
+    white-space: pre-line;
+    text-align: center;
+    padding-left: 2rem;
+
+    .password-error {
+      text-align: left;
+      white-space: pre-wrap;
+    }
   }
 }

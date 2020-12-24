@@ -24,7 +24,6 @@
 
   .register-form-wrapper {
     margin: 2rem auto 0;
-    text-align: center;
 
     form {
       width: 400px;
@@ -32,7 +31,11 @@
     }
   }
 
-  .register-button {
-    padding: 0.5rem 0.8rem;
+  .register-button-wrapper {
+    text-align: center;
+
+    .register-button {
+      padding: 0.5rem 0.8rem;
+    }
   }
 }
